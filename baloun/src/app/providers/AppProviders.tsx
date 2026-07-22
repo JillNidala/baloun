@@ -1,0 +1,11 @@
+import type { ReactNode } from 'react'
+import { MotionConfig } from 'framer-motion'
+import { QueryProvider } from './QueryProvider'
+
+export function AppProviders({ children }: { children: ReactNode }) {
+  return (
+    <QueryProvider>
+      <MotionConfig reducedMotion="user">{children}</MotionConfig>
+    </QueryProvider>
+  )
+}
