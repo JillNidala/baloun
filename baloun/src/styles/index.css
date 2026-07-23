@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --safe-top: env(safe-area-inset-top);
+  --safe-bottom: env(safe-area-inset-bottom);
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+  body {
+    @apply bg-cream text-ink font-body antialiased;
+    -webkit-tap-highlight-color: transparent;
+    text-rendering: optimizeLegibility;
+  }
+  /* Titoli: serif editoriale, tracking negativo (stile giornale) */
+  h1, h2, h3 {
+    @apply font-display tracking-tight;
+  }
+  /* Evita lo zoom automatico su iOS quando si tocca un input */
+  input, textarea, select {
+    font-size: 16px;
+  }
+}
+
+@layer components {
+  .kicker {
+    @apply font-mono text-[11px] uppercase tracking-[0.18em] text-muted;
+  }
+  .caption {
+    @apply font-mono text-[13px] text-muted;
+  }
+  .hairline {
+    @apply border border-hairline;
+  }
+  .safe-top {
+    padding-top: max(1rem, var(--safe-top));
+  }
+  .safe-bottom {
+    padding-bottom: max(1rem, var(--safe-bottom));
+  }
+}
+
+/* Rispetta chi preferisce meno movimento (stile Apple) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
